@@ -12,15 +12,13 @@ static NSString *localURL = @"http://lennie.off.padl.com:8000/RPC2";
  */
 void testStateMapperArg(void) {
 	XMLRPCClient *client;
-	XMLRPCValue *value, *argFrame;
+	id object;
 	NSNumber *number = [NSNumber numberWithInt:41];
 	NSArray *args = [NSArray arrayWithObject:number];
 	
 	client = [XMLRPCClient client:[NSURL URLWithString:@"http://betty.userland.com/RPC2"]];
-	argFrame = [XMLRPCValue valueWithObject:args];
-	NSLog([argFrame description]);
-	value = [client invoke:@"examples.getStateName" withArguments:argFrame];
-	NSLog(@"%@", [[value object] description]);
+	object = [client invoke:@"examples.getStateName" withArguments:args];
+	NSLog(@"%@", [object description]);
 }
 
 /*
@@ -29,15 +27,13 @@ void testStateMapperArg(void) {
  */
 void testLocalArg(void) {
 	XMLRPCClient *client;
-	XMLRPCValue *value, *argFrame;
+	id value;
 	NSNumber *x = [NSNumber numberWithInt:23], *y = [NSNumber numberWithInt:42];
 	NSArray *args = [NSArray arrayWithObjects:x, y, nil];
 
 	client = [XMLRPCClient client:[NSURL URLWithString:localURL]];
-	argFrame = [XMLRPCValue valueWithObject:args];
-	NSLog([argFrame description]);
-	value = [client invoke:@"sample.add" withArguments:argFrame];
-	NSLog(@"%@", [[value object] description]);
+	value = [client invoke:@"sample.add" withArguments:args];
+	NSLog(@"%@", [value description]);
 }
 
 /*

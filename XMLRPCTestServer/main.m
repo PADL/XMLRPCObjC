@@ -18,7 +18,7 @@
 
 int main (int argc, const char *argv[]) {
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-	XMLRPCServer *server = [XMLRPCServer server];
+	XMLRPCServer *server = [XMLRPCAbyssServer server];
 
 	[server setObjectAutoCreation:YES];
 	[server run];

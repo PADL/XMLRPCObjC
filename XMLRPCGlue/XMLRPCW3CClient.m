@@ -37,7 +37,7 @@
 	password = (char *)[[mUserInfo objectForKey:XMLRPCClientBasicAuthPasswordKey] cString];
 
 	if (username != NULL && password != NULL) {
-		xmlrpc_server_info_set_basic_auth([env rpcEnv],  (xmlrpc_server_info *)mServerInfo, username, password);
+		xmlrpc_server_info_set_basic_auth([env rpcEnv], mServerInfo, username, password);
 		[env raiseIfFaultOccurred];
 	}
 	
@@ -49,7 +49,7 @@
 - (void)dealloc
 {
 	xmlrpc_client_cleanup();
-	xmlrpc_server_info_free((xmlrpc_server_info *)mServerInfo);
+	xmlrpc_server_info_free(mServerInfo);
 	[super dealloc];
 }
 
@@ -60,7 +60,7 @@
 	XMLRPCValue *value;
 	
 	result = xmlrpc_client_call_server_params([env rpcEnv],
-				(xmlrpc_server_info *)mServerInfo,
+				mServerInfo,
 				(char *)[method cString],
 				[argFrame borrowReference]);
 	

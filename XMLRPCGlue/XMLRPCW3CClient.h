@@ -10,7 +10,7 @@
 
 @interface XMLRPCW3CClient : XMLRPCGlueClient
 {
-	void *mServerInfo;
+	xmlrpc_server_info *mServerInfo;
 }
 @end
 

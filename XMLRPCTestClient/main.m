@@ -10,7 +10,7 @@ void testWrappers(void) {
 	NSNumber *number = [NSNumber numberWithInt:41];
 	NSArray *args = [NSArray arrayWithObject:number];
 	
-	client = [XMLRPCClient client:@"http://betty.userland.com/RPC2"];
+	client = [XMLRPCClient client:[NSURL URLWithString:@"http://betty.userland.com/RPC2"]];
 	argFrame = [XMLRPCValue valueWithObject:args];
 	NSLog([argFrame description]);
 	value = [client call:@"examples.getStateName" withArguments:argFrame];
@@ -23,7 +23,7 @@ void testWrappers2(void) {
 	NSNumber *x = [NSNumber numberWithInt:23], *y = [NSNumber numberWithInt:42];
 	NSArray *args = [NSArray arrayWithObjects:x, y, nil];
 
-	client = [XMLRPCClient client:@"http://lennie.off.padl.com:8000/RPC2"];
+	client = [XMLRPCClient client:[NSURL URLWithString:@"http://lennie.off.padl.com:8000/RPC2"]];
 	argFrame = [XMLRPCValue valueWithObject:args];
 	NSLog([argFrame description]);
 	value = [client call:@"sample.add" withArguments:argFrame];
@@ -37,7 +37,7 @@ void testProxy(void) {
 	XMLRPCProxy <StateNaming> *stateNamer;
 	id rootProxy;
 	
-	client = [XMLRPCClient client:@"http://betty.userland.com/RPC2"];
+	client = [XMLRPCClient client:[NSURL URLWithString:@"http://betty.userland.com/RPC2"]];
 	rootProxy = [client rootProxy];
 
 	stateNamer = (id <StateNaming>)[rootProxy proxyForTarget:@"examples"];
@@ -54,7 +54,7 @@ void testLocal(void) {
 	XMLRPCProxy <sample_protocol> *adder;
 	id rootProxy;
 
-	client = [XMLRPCClient client:@"http://lennie.off.padl.com:8000/RPC2"];
+	client = [XMLRPCClient client:[NSURL URLWithString:@"http://lennie.off.padl.com:8000/RPC2"]];
 	rootProxy = [client rootProxy];
 
 	adder = (id <sample_protocol>)[rootProxy proxyForTarget:@"sample"];
@@ -68,14 +68,17 @@ void testMeerkat(void) {
 	XMLRPCClient *client;
 	id rootProxy;
 	XMLRPCProxy <Meerkat> *meerkat;
-	NSMutableDictionary *recipe = [NSMutableDictionary dictionary];
 	NSArray *apps;
+	MeerkatRecipe *recipe;
 
-	client = [XMLRPCClient client:@"http://www.oreillynet.com/meerkat/xml-rpc/server.php"];
+	client = [XMLRPCClient client:[NSURL URLWithString:
+		@"http://www.oreillynet.com/meerkat/xml-rpc/server.php"]];
 	rootProxy = [client rootProxy];
-	[recipe setObject:[NSNumber numberWithInt:6] forKey:@"category"]; // SOFTWARE_LINUX
-	[recipe setObject:@"24HOUR" forKey:@"time_period"];
-	[recipe setObject:[NSNumber numberWithInt:76] forKey:@"descriptions"];
+	
+	recipe = [[[MeerkatRecipe alloc] init] autorelease];
+	[recipe setCategory:[NSNumber numberWithInt:6]]; // SOFTWARE_LINUX
+	[recipe setTime_period:@"24HOUR"];
+	[recipe setDescriptions:[NSNumber numberWithInt:76]]; // no idea
 
 	meerkat = (id <Meerkat>)[rootProxy proxyForTarget:@"meerkat"];
 	[meerkat setProtocolForProxy:@protocol(Meerkat)];

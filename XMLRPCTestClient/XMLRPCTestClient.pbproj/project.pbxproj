@@ -4,6 +4,79 @@
 	};
 	objectVersion = 30;
 	objects = {
+		0263D66E00362468CB0D2049 = {
+			isa = PBXFileReference;
+			path = Meerkat.h;
+			refType = 4;
+		};
+		0263D66F00362468CB0D2049 = {
+			isa = PBXFileReference;
+			path = Meerkat.m;
+			refType = 4;
+		};
+		0263D67000362468CB0D2049 = {
+			isa = PBXFileReference;
+			path = sample.h;
+			refType = 4;
+		};
+		0263D67100362468CB0D2049 = {
+			isa = PBXFileReference;
+			path = StateNaming.h;
+			refType = 4;
+		};
+		0263D67200362468CB0D2049 = {
+			fileRef = 0263D66E00362468CB0D2049;
+			isa = PBXBuildFile;
+			settings = {
+				INCLUDED_OSS = (
+					MACOS,
+					WINDOWS,
+					PDOUNIX,
+				);
+			};
+		};
+		0263D67300362468CB0D2049 = {
+			fileRef = 0263D67000362468CB0D2049;
+			isa = PBXBuildFile;
+			settings = {
+				INCLUDED_OSS = (
+					MACOS,
+					WINDOWS,
+					PDOUNIX,
+				);
+			};
+		};
+		0263D67400362468CB0D2049 = {
+			fileRef = 0263D67100362468CB0D2049;
+			isa = PBXBuildFile;
+			settings = {
+				INCLUDED_OSS = (
+					MACOS,
+					WINDOWS,
+					PDOUNIX,
+				);
+			};
+		};
+		0263D67500362468CB0D2049 = {
+			fileRef = 0263D67600362468CB0D2049;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					Debug,
+				);
+				INCLUDED_OSS = (
+					MACOS,
+					WINDOWS,
+					PDOUNIX,
+				);
+			};
+		};
+		0263D67600362468CB0D2049 = {
+			isa = PBXFileReference;
+			name = Meerkat.m;
+			path = /Network/Servers/fs/u01/home/lukeh/CVSRoot/padl/XMLRPCObjC/XMLRPCTestClient/Meerkat.m;
+			refType = 0;
+		};
 		034768E6FF38A76511DB9C8B = {
 			isa = PBXExecutableFileReference;
 			path = XMLRPCTestClient;
@@ -30,6 +103,10 @@
 		08FB7795FE84155DC02AAC07 = {
 			children = (
 				08FB7796FE84155DC02AAC07,
+				0263D66E00362468CB0D2049,
+				0263D66F00362468CB0D2049,
+				0263D67000362468CB0D2049,
+				0263D67100362468CB0D2049,
 			);
 			isa = PBXGroup;
 			name = Source;
@@ -87,6 +164,9 @@
 		08FB77A0FE84155DC02AAC07 = {
 			buildActionMask = 2147483647;
 			files = (
+				0263D67200362468CB0D2049,
+				0263D67300362468CB0D2049,
+				0263D67400362468CB0D2049,
 			);
 			isa = PBXHeadersBuildPhase;
 			name = Headers;
@@ -95,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08FB77A2FE84155DC02AAC07,
+				0263D67500362468CB0D2049,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;

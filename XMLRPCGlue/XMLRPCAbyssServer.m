@@ -40,7 +40,8 @@
 	xmlrpc_server_abyss_init(XMLRPC_SERVER_ABYSS_NO_FLAGS, (char *)configFile);
 
 	registry = xmlrpc_server_abyss_registry();
-	xmlrpc_registry_set_default_method([env rpcEnv], registry, NULL, _XMLRPCDefaultMethod, self);
+
+	xmlrpc_registry_set_default_method([env rpcEnv], registry, _XMLRPCDefaultMethod, self);
 
 	[env raiseIfFaultOccurred];
 	

@@ -4,6 +4,7 @@
 //
 //  Created by lukeh on Sun Feb 11 2001.
 //  Copyright (c) 2001 PADL Software Pty Ltd. All rights reserved.
+//  Use is subject to license.
 //
 
 #import "Meerkat.h"

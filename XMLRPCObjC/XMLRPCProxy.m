@@ -4,6 +4,7 @@
 //
 //  Created by lukeh on Fri Feb 09 2001.
 //  Copyright (c) 2001 PADL Software Pty Ltd. All rights reserved.
+//  Use is subject to license.
 //
 
 #import "XMLRPCPrivate.h"
@@ -101,14 +102,26 @@ static Class _defaultClass = NULL;
 			 * We're nice, and convert primitive types. Really
 			 * we only want to support objects.
 			 */
+			case NSObjCCharType - 32:
+				argValue = [NSNumber numberWithUnsignedChar:objCValue.value.charValue];
+				break;
 			case NSObjCCharType:
 				argValue = [NSNumber numberWithChar:objCValue.value.charValue];
+				break;
+			case NSObjCShortType - 32:
+				argValue = [NSNumber numberWithUnsignedShort:objCValue.value.shortValue];
 				break;
 			case NSObjCShortType:
 				argValue = [NSNumber numberWithShort:objCValue.value.shortValue];
 				break;
+			case NSObjCLongType - 32:
+				argValue = [NSNumber numberWithUnsignedLong:objCValue.value.longValue];
+				break;
 			case NSObjCLongType:
 				argValue = [NSNumber numberWithLong:objCValue.value.longValue];
+				break;
+			case NSObjCLonglongType - 32:
+				argValue = [NSNumber numberWithUnsignedLongLong:objCValue.value.longlongValue];
 				break;
 			case NSObjCLonglongType:
 				argValue = [NSNumber numberWithLongLong:objCValue.value.longlongValue];
@@ -150,11 +163,17 @@ static Class _defaultClass = NULL;
 	objCType = *[sig methodReturnType];
 
 	switch (objCType) {
+		case NSObjCCharType - 32:
 		case NSObjCCharType: 
+		case NSObjCShortType - 32:
 		case NSObjCShortType: 
+		case NSObjCLongType - 32:
 		case NSObjCLongType: 
+		case NSObjCLonglongType - 32:
 		case NSObjCLonglongType: 
+		case NSObjCFloatType - 32:
 		case NSObjCFloatType: 
+		case NSObjCDoubleType - 32:
 		case NSObjCDoubleType:
 		case NSObjCStringType:
 			_XMLRPCObjCValueFromObject(&objCValue, retObject);
@@ -237,12 +256,15 @@ XMLRPC_EXPORT void _XMLRPCObjCValueFromObject(NSObjCValue *valp, id obj)
 	if ([obj isKindOfClass:[NSNumber class]]) {
 		valp->type = *[(NSNumber *)obj objCType];
 		switch (valp->type) {
+			case NSObjCLongType - 32:
 			case NSObjCLongType:
 				valp->value.longValue = [(NSNumber *)obj intValue];
 				break;
+			case NSObjCCharType - 32:
 			case NSObjCCharType:
 				valp->value.charValue = [(NSNumber *)obj charValue];
 				break;
+			case NSObjCDoubleType - 32:
 			case NSObjCDoubleType:
 				valp->value.doubleValue = [(NSNumber *)obj doubleValue];
 				break;

@@ -3,8 +3,10 @@
     FILESTABLE = {
         FRAMEWORKS = (Foundation.framework, XMLRPCGlue.framework, XMLRPCObjC.framework); 
         FRAMEWORKSEARCH = (/Library/Frameworks); 
+        H_FILES = (); 
         OTHER_LINKED = (main.m); 
         OTHER_SOURCES = (Makefile.preamble, Makefile, Makefile.postamble, m.template, h.template); 
+        SUBPROJECTS = (); 
     }; 
     LANGUAGE = English; 
     MAKEFILEDIR = "$(MAKEFILEPATH)/pb_makefiles"; 

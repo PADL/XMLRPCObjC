@@ -3,7 +3,8 @@
 //  XMLRPCObjC -- Objective-C bindings to XML-RPC
 //
 //  Created by lukeh on Fri Feb 09 2001.
-//  Copyright (c) 2000 PADL Software Pty Ltd. All rights reserved.
+//  Copyright (c) 2001 PADL Software Pty Ltd. All rights reserved.
+//  Use is subject to license.
 //
 
 /* I have tried to omit any xmlrpc-c specific stuff from this */

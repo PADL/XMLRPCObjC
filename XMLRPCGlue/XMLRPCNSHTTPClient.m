@@ -4,6 +4,7 @@
 //
 //  Created by lukeh on Mon Feb 12 2001.
 //  Copyright (c) 2001 PADL Software Pty Ltd. All rights reserved.
+//  Use is subject to license.
 //
 
 #import "XMLRPCPrivate.h"

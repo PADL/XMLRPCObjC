@@ -4,6 +4,7 @@
 //
 //  Created by lukeh on Fri Feb 09 2001.
 //  Copyright (c) 2001 PADL Software Pty Ltd. All rights reserved.
+//  Use is subject to license.
 //
 
 #import "XMLRPCGluePrivate.h"
@@ -173,37 +174,51 @@
 	env = [[XMLRPCEnv alloc] init];
 
 	switch (*[number objCType]) {
-		case NSObjCCharType - 32:
+		case NSObjCCharType - 32: {
+			unsigned char unsignedCharValue = [number unsignedCharValue];
+			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)unsignedCharValue);
+			break;
+		}
 		case NSObjCCharType: {
 			char charValue = [number charValue];
 			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)charValue);
 			break;
 		}
-		case NSObjCShortType - 32:
+		case NSObjCShortType - 32: {
+			unsigned short unsignedShortValue = [number unsignedShortValue];
+			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)unsignedShortValue);
+			break;
+		}
 		case NSObjCShortType: {
 			short shortValue = [number shortValue];
 			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)shortValue);
 			break;
 		}
-		case NSObjCLongType - 32:
+		case NSObjCLongType - 32: {
+			unsigned long unsignedLongValue = [number unsignedLongValue];
+			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)unsignedLongValue);
+			break;
+		}
 		case NSObjCLongType: {
 			long longValue = [number longValue];
 			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)longValue);
 			break;
 		}
-		case NSObjCLonglongType - 32:
+		case NSObjCLonglongType - 32: {
+			unsigned long long unsignedLongLongValue = [number unsignedLongLongValue];
+			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)unsignedLongLongValue);
+			break;
+		}
 		case NSObjCLonglongType: {
 			long long longLongValue = [number longLongValue];
 			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)longLongValue);
 			break;
 		}
-		case NSObjCFloatType - 32:
 		case NSObjCFloatType: {
 			float floatValue = [number floatValue];
 			value = xmlrpc_build_value([env rpcEnv], "d", (double)floatValue);
 			break;
 		}
-		case NSObjCDoubleType - 32:
 		case NSObjCDoubleType: {
 			double doubleValue = [number doubleValue];
 			value = xmlrpc_build_value([env rpcEnv], "d", doubleValue);
@@ -347,37 +362,50 @@
 	}
 
 	switch (value->type) {
-		case NSObjCCharType - 32:
+		case NSObjCCharType - 32: {
+			retVal = [[XMLRPCValue alloc] initWithNumber:
+				[NSNumber numberWithUnsignedChar:value->value.charValue]];
+			break;
+		}
 		case NSObjCCharType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithChar:value->value.charValue]];
 			break;
 		}
-		case NSObjCShortType - 32:
+		case NSObjCShortType - 32: {
+			retVal = [[XMLRPCValue alloc] initWithNumber:
+				[NSNumber numberWithUnsignedShort:value->value.shortValue]];
+		}
 		case NSObjCShortType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithShort:value->value.shortValue]];
 			break;
 		}
-		case NSObjCLongType - 32:
+		case NSObjCLongType - 32: {
+			retVal = [[XMLRPCValue alloc] initWithNumber:
+				[NSNumber numberWithUnsignedLong:value->value.shortValue]];
+			break;
+		}
 		case NSObjCLongType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithLong:value->value.longValue]];
 			break;
 		}
-		case NSObjCLonglongType - 32:
+		case NSObjCLonglongType - 32: {
+			retVal = [[XMLRPCValue alloc] initWithNumber:
+				[NSNumber numberWithUnsignedLongLong:value->value.longlongValue]];
+			break;
+		}
 		case NSObjCLonglongType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithLongLong:value->value.longValue]];
 			break;
 		}
-		case NSObjCFloatType - 32:
 		case NSObjCFloatType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithFloat:value->value.floatValue]];
 			break;
 		}
-		case NSObjCDoubleType - 32:
 		case NSObjCDoubleType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithDouble:value->value.doubleValue]];

@@ -18,6 +18,7 @@
         ); 
         LIBRARYSEARCH = (/usr/local/lib); 
         OTHER_SOURCES = (Makefile.preamble, Makefile, Makefile.postamble, m.template, h.template); 
+        SUBPROJECTS = (); 
     }; 
     LANGUAGE = English; 
     MAKEFILEDIR = "$(MAKEFILEPATH)/pb_makefiles"; 

@@ -67,6 +67,7 @@
         ); 
         OTHER_RESOURCES = (InfoPlist.strings); 
         OTHER_SOURCES = (Makefile.preamble, Makefile, Makefile.postamble); 
+        SUBPROJECTS = (); 
     }; 
     LANGUAGE = English; 
     MAKEFILEDIR = "$(MAKEFILEPATH)/pb_makefiles"; 

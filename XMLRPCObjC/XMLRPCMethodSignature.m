@@ -4,6 +4,7 @@
 //
 //  Created by lukeh on Fri Feb 09 2001.
 //  Copyright (c) 2001 PADL Software Pty Ltd. All rights reserved.
+//  Use is subject to license.
 //
 
 #include "XMLRPCPrivate.h"
@@ -106,9 +107,13 @@ static char *_XMLRPCMakeObjCSignature(NSArray *types)
 const char *_XMLRPCTypeFromObjCType(const char *objCType)
 {
 	switch (*objCType) {
+		case NSObjCCharType - 32:
 		case NSObjCCharType:
+		case NSObjCShortType - 32:
 		case NSObjCShortType:
+		case NSObjCLongType - 32:
 		case NSObjCLongType:
+		case NSObjCLonglongType - 32:
 		case NSObjCLonglongType:
 			return "i";
 		case NSObjCFloatType:

@@ -1,0 +1,6 @@
+# Created and modified by checkpoint; do not edit
+# $Id$
+# $Name$
+ProjectName: XMLRPCObjC
+ProjectVersion: 1
+ProjectMaintainer: lukeh

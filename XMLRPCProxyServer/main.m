@@ -2,7 +2,7 @@
 #import <XMLRPCObjC/XMLRPCObjC.h>
 
 int main (int argc, const char *argv[]) {
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	XMLRPCServer *server;
 	XMLRPCClient *client;
 	NSString *url;
@@ -28,6 +28,6 @@ int main (int argc, const char *argv[]) {
 	[server setObject:client forKey:@"$default"];
 	[server run];
 	
-    [pool release];
-    exit(0);
+	[pool release];
+	exit(0);
 }

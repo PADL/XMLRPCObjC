@@ -1,4 +1,17 @@
-/* Category.m created by lukeh on Tue 09-Apr-2002 */
+/*
+ * (c) Copyright 2002 PADL Software Pty Ltd
+ * To anyone who acknowledges that this file is provided "AS IS"
+ * without any express or implied warranty:
+ *                 permission to use, copy, modify, and distribute this
+ * file for any purpose is hereby granted without fee, provided that
+ * the above copyright notices and this notice appears in all source
+ * code copies, and that the name PADL Software Pty Ltd not be used in
+ * advertising or publicity pertaining to distribution of the software
+ * without specific, written prior permission.  PADL Software Pty Ltd
+ * makes no representation about the suitability of this software for
+ * any purpose.
+ *
+ */
 
 #import "Category.h"
 #import "DataSource.h"
@@ -62,14 +75,12 @@
         recipe = [[MeerkatRecipe alloc] init];
         [recipe setCategory:[self id]];
         [recipe setTime_period:@"24HOUR"];
-        //[recipe setDescriptions:[NSNumber numberWithInt:0]];
 
         _items = [[datasource meerkat] getItems:recipe];
         
         items = [[NSMutableArray alloc] initWithCapacity:[_items count]];
         e = [_items objectEnumerator];
-        while ((obj = [e nextObject]) != nil)
-        {
+        while ((obj = [e nextObject]) != nil) {
             Item *item;
 
             item = [[Item alloc] init];
@@ -100,6 +111,3 @@
 }
 @end
 
-/*
- - (BOOL)openURL:(NSURL *)url;
-*/

@@ -1,12 +1,23 @@
-/* DataSource.m created by lukeh on Tue 09-Apr-2002 */
+/*
+ * (c) Copyright 2002 PADL Software Pty Ltd
+ * To anyone who acknowledges that this file is provided "AS IS"
+ * without any express or implied warranty:
+ *                 permission to use, copy, modify, and distribute this
+ * file for any purpose is hereby granted without fee, provided that
+ * the above copyright notices and this notice appears in all source
+ * code copies, and that the name PADL Software Pty Ltd not be used in
+ * advertising or publicity pertaining to distribution of the software
+ * without specific, written prior permission.  PADL Software Pty Ltd
+ * makes no representation about the suitability of this software for
+ * any purpose.
+ *
+ */
 
 #import "DataSource.h"
 #import "CategoryBag.h"
 #import "Item.h"
 
 @implementation DataSource
-
-// Data Source methods
 
 - (id <Meerkat>)meerkat
 {
@@ -56,7 +67,6 @@
     if (item == nil) {
         item = bag;
     }
-//    NSLog(@"outlineView: %@ numberOfChildrenOfItem: %@", outlineView, item);
     return [item numberOfChildren];
 }
 
@@ -65,8 +75,6 @@
     if (item == nil) {
         item = bag;
     }
-//    NSLog(@"outlineView: %@ isItemExpandable: %@", outlineView, item);
-    
     return [item isExpandable];
 }
 
@@ -75,8 +83,6 @@
     if (item == nil) {
         item = bag;
     }
-//    NSLog(@"outlineView: %@ child: %d ofItem: %@", outlineView, index, item);
-    
     return [item childAtIndex:index];
 }
 
@@ -93,8 +99,6 @@
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[item link]]];        
     }
 }
-
-// Delegate methods
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldEditTableColumn:(NSTableColumn *)tableColumn item:(id)item
 {

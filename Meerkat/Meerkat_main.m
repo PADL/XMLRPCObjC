@@ -1,38 +1,20 @@
+/*
+ * (c) Copyright 2001-2002 PADL Software Pty Ltd
+ * To anyone who acknowledges that this file is provided "AS IS"
+ * without any express or implied warranty:
+ *                 permission to use, copy, modify, and distribute this
+ * file for any purpose is hereby granted without fee, provided that
+ * the above copyright notices and this notice appears in all source
+ * code copies, and that the name PADL Software Pty Ltd not be used in
+ * advertising or publicity pertaining to distribution of the software
+ * without specific, written prior permission.  PADL Software Pty Ltd
+ * makes no representation about the suitability of this software for
+ * any purpose.
+ *
+ */
+
 #import <AppKit/AppKit.h>
-#import "Meerkat.h"
-
-void testMeerkat(void) {
-    XMLRPCClient *client;
-    XMLRPCProxy <Meerkat> *meerkat;
-    NSArray *apps;
-    MeerkatRecipe *recipe;
-    NSAutoreleasePool *puddle = [[NSAutoreleasePool alloc] init];
-
-    client = [XMLRPCClient client:[NSURL URLWithString:
-        @"http://www.oreillynet.com/meerkat/xml-rpc/server.php"]];
-
-    meerkat = (id <Meerkat>)[client proxyForTarget:@"meerkat"];
-    [meerkat setProtocolForProxy:@protocol(Meerkat)];
-
-    NSLog(@"%@", [meerkat getCategories]);
-
-    recipe = [[[MeerkatRecipe alloc] init] autorelease];
-    [recipe setCategory:[NSNumber numberWithInt:43]]; // SOFTWARE_LINUX
-    [recipe setTime_period:@"24HOUR"];
-    [recipe setDescriptions:[NSNumber numberWithInt:1]]; // no idea
-    NSLog(@"%@", [recipe description]);
-
-    apps = [meerkat getItems:recipe];
-
-    NSLog(@"%@", apps);
-    [puddle release];
-}
-
 
 int main(int argc, const char *argv[]) {
-#if 0
-    testMeerkat();
-#else
     return NSApplicationMain(argc, argv);
-#endif
 }

@@ -50,8 +50,7 @@
         _categories = [[datasource meerkat] getCategories];
         categories = [[NSMutableArray alloc] initWithCapacity:[_categories count]];
         e = [_categories objectEnumerator];
-        while ((obj = [e nextObject]) != nil)
-        {
+        while ((obj = [e nextObject]) != nil) {
             Category *cat;
 
             cat = [[Category alloc] initWithDataSource:datasource];
@@ -71,4 +70,16 @@
     return [[self categories] description];
 }
 
+- (void)forgetItems
+{
+    NSEnumerator *e;
+    Category *cat;
+
+    if (categories != nil) {
+        e = [categories objectEnumerator];
+        while ((cat = [e nextObject]) != nil) {
+            [cat forgetItems];
+        }
+    }
+}
 @end

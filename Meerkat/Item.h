@@ -20,6 +20,8 @@
     NSString *description;
     NSString *link;
     NSString *title;
+    NSDate *fetchTime;
+    NSTimeInterval ttl;
 }
 
 - (NSString *)description;
@@ -28,9 +30,9 @@
 - (void)setLink:(NSString *)s;
 - (NSString *)title;
 - (void)setTitle:(NSString *)s;
-
+- initWithTTL:(NSTimeInterval)ttl;
 - (int)numberOfChildren;
 - childAtIndex:(int)n;
 - (BOOL)isExpandable;
-
+- (BOOL)isValid;
 @end

@@ -12,6 +12,7 @@
         OTHER_LINKED = (Meerkat_main.m); 
         OTHER_RESOURCES = (AppIcon.icns, CustomInfo.plist); 
         OTHER_SOURCES = (Makefile.preamble, Makefile, Makefile.postamble); 
+        SUBPROJECTS = (); 
     }; 
     LANGUAGE = English; 
     MAKEFILEDIR = "$(MAKEFILEPATH)/pb_makefiles"; 

@@ -38,4 +38,5 @@
 - (int)numberOfChildren;
 - childAtIndex:(int)n;
 - (BOOL)isExpandable;
+- (void)forgetItems;
 @end

@@ -31,6 +31,7 @@
 - (id <Meerkat>)meerkat;
 - (BOOL)connect;
 - (IBAction)open:(id)sender;
+- (IBAction)flushArticleCache:(id)sender;
 - (IBAction)showInfoPanel:(id)sender;
 
 @end

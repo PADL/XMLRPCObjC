@@ -1,7 +1,7 @@
 {
     IBClasses = (
         {
-            ACTIONS = {open = id; showInfoPanel = id; }; 
+            ACTIONS = {flushArticleCache = id; open = id; showInfoPanel = id; }; 
             CLASS = DataSource; 
             LANGUAGE = ObjC; 
             OUTLETS = {outlineView = id; }; 

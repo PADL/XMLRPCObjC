@@ -105,4 +105,9 @@
     return NO;
 }
 
+- (IBAction)flushArticleCache:(id)sender
+{
+    [bag forgetItems];
+}
+
 @end

@@ -19,6 +19,7 @@
 @implementation Item
 - (void)dealloc
 {
+    [fetchTime release];
     [description release];
     [link release];
     [title release];
@@ -73,4 +74,28 @@
     return NO;
 }
 
+- initWithTTL:(NSTimeInterval)_ttl
+{
+    [super init];
+
+    ttl = _ttl;
+    fetchTime = [[NSDate date] retain];
+
+    return self;
+}
+
+- init
+{
+    return [self initWithTTL:0];
+}
+
+- (BOOL)isValid
+{
+    // 24 hour TTL
+    if ([fetchTime timeIntervalSinceNow] > ttl) {
+        return NO;
+    }
+    
+    return YES;
+}
 @end

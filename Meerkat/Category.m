@@ -83,7 +83,7 @@
         while ((obj = [e nextObject]) != nil) {
             Item *item;
 
-            item = [[Item alloc] init];
+            item = [[Item alloc] initWithTTL:(24 * 60 * 60.0)];
             if (item != nil) {
                 [item takeValuesFromDictionary:(NSDictionary *)obj];
                 [item autorelease];
@@ -91,6 +91,17 @@
             }
         }
         [recipe release];
+    } else {
+        /* expire old stuff */
+        NSEnumerator *e;
+        Item *item;
+
+        e = [items objectEnumerator];
+        while ((item = [e nextObject]) != nil) {
+            if ([item isValid] == NO) {
+                [items removeObject:item];
+            }
+        }
     }
     
     return items;
@@ -108,6 +119,14 @@
     [datasource release];
     [items release];
     [super dealloc];
+}
+
+- (void)forgetItems
+{
+    if (items != nil) {
+        [items release];
+        items = nil;
+    }
 }
 @end
 

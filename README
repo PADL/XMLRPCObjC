@@ -1,0 +1,93 @@
+
+                       XMLRPCObjC
+                       ==========
+
+XMLRPCObjC is an Objective-C wrapper for Eric Kidd's xmlrpc-c
+library. 
+
+You will need the following things to get this to compile:
+
+   o A Mac OS X system. I have not tested with
+     any other versions of Cocoa. We use the
+     new Project Builder makefiles as well as
+     depending on various private Foundation API.
+
+   o The xmlrpc-c library. This is available from
+     http://xmlrpc-c.sourceforge.net/. We have made
+     a couple of patches to this which should be
+     in the next release.
+
+   o The w3c-libwww library. This is available from
+     http://www.w3c.org/Library/
+
+To get started, have a look at the following files:
+
+   XMLRPCTestClient/main.m
+   XMLRPCTestServer/main.m
+
+What does this let you do?
+
+   o Invoke XMLRPC methods as if they belonged to
+     local Objective-C objects.
+
+   o Translate between C and Objective-C primitive
+     types and XMLRPC types.
+
+   o Translate Objective-C objects into XMLRPC
+     structures (dictionaries)
+
+   o Register Objective-C objects to be vended
+     by an XMLRPC server
+
+   o Hook together an XMLRPC proxy server
+
+   o Support for the xmlrpc-c type introspection
+     registry, so that you do not need to register
+     type information before invoking a method
+
+I have tried to model the API as closely as possible
+on the existing Distributed Objects API. The difference
+is that XMLRPC is more like COM than DO, in that you 
+don't get a persistent reference to an object. Had
+I still had D'OLE kicking around I suppose I would have
+modelled the API on that instead. 
+
+Here is a simple client that adds two numbers:
+
+   XMLRPCClient *client;
+   id adder;
+   long result;
+
+   client = [XMLRPCClient client:@"localhost"
+      port:[NSNumber numberWithInt:8000]];
+   adder = [client proxyForTarget:@"sample"];
+   result = [adder add:23 :42];
+   NSLog(@"%ld", result);
+
+This will invoke the XMLRPC method "sample.add" on 
+the URL http://localhost:8000/RPC2. (You need to
+declare the add:: method somewhere so the compile
+will find it, but it's not necessary to register
+this with the XMLRPCObjC runtime if your XMLRPC
+server supports type introspection.)
+
+To avoid a round trip, you might want to do:
+
+   @protocol sample_protocol 
+   - (long)add:(long)x :(long)y;
+   @end
+
+   [adder setProtocolForProxy:@protocol(sample_protocol)];
+
+Note that you could also declare the protocol to
+take Objective-C objects, eg:
+
+   @protocol sample_protocol 
+   - (NSNumber *)add:(NSNumber *)x :(NSNumber *)y;
+   @end
+
+-- 
+Luke Howard <lukeh@padl.com>
+PADL Software Pty Ltd
+February 2001
+

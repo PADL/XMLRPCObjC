@@ -18,9 +18,9 @@ int main (int argc, const char *argv[]) {
 		NSMutableDictionary *config;
 		config = [NSMutableDictionary dictionary];
 		[config setObject:[NSString stringWithCString:argv[2]] forKey:XMLRPCAbyssServerConfigurationKey];
-		server = [XMLRPCAbyssServer serverWithConfiguration:config];
+		server = [XMLRPCServer serverWithConfiguration:config];
 	} else {
-		server = [XMLRPCAbyssServer server];
+		server = [XMLRPCServer server];
 	}
 	
 	client = [XMLRPCClient client:[NSURL URLWithString:url]];

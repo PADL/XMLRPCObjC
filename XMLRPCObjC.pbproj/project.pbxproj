@@ -1,0 +1,43 @@
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 30;
+	objects = {
+		049D0FE8003A9C33CB0D2049 = {
+			isa = PBXProject;
+			mainGroup = 049D0FE9003A9C33CB0D2049;
+			projectDirPath = .;
+			targets = (
+				049D0FEB003A9D23CB0D2049,
+			);
+		};
+		049D0FE9003A9C33CB0D2049 = {
+			children = (
+			);
+			isa = PBXGroup;
+			refType = 4;
+		};
+		049D0FEB003A9D23CB0D2049 = {
+			buildPhases = (
+			);
+			buildSettings = {
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+			};
+			conditionalBuildSettings = {
+			};
+			dependencies = (
+			);
+			isa = PBXAggregateTarget;
+			name = XMLRPCObjC;
+			productName = XMLRPCObjC;
+			shouldUseHeadermap = 0;
+		};
+	};
+	rootObject = 049D0FE8003A9C33CB0D2049;
+}

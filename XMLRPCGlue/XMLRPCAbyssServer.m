@@ -1,6 +1,6 @@
 //
 //  XMLRPCAbyssServer.m
-//  XMLRPCObjC
+//  XMLRPCGlue -- private glue between XMLRPCObjC and xmlrpc-c
 //
 //  Created by lukeh on Mon Feb 12 2001.
 //  Copyright (c) 2001 PADL Software Pty Ltd. All rights reserved.
@@ -53,8 +53,4 @@
 
 @end
 
-#undef XMLRPC_EXPORT
-#define XMLRPC_EXPORT
-
-XMLRPC_EXPORT NSString *const XMLRPCAbyssServerConfigurationKey = @"XMLRPCAbyssServerConfigurationKey";
 

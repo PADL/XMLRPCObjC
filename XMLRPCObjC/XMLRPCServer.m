@@ -1,6 +1,6 @@
 //
 //  XMLRPCServer.m
-//  XMLRPC
+//  XMLRPCObjC -- Objective-C bindings to XML-RPC
 //
 //  Created by lukeh on Fri Feb 09 2001.
 //  Copyright (c) 2000 PADL Software Pty Ltd. All rights reserved.
@@ -205,3 +205,7 @@ static Class _defaultClass = NULL;
 
 @end
 
+#undef XMLRPC_EXPORT
+#define XMLRPC_EXPORT
+
+XMLRPC_EXPORT NSString *const XMLRPCAbyssServerConfigurationKey = @"XMLRPCAbyssServerConfigurationKey";

@@ -1,6 +1,6 @@
 //
 //  XMLRPCServer.h
-//  XMLRPC
+//  XMLRPCObjC -- Objective-C bindings to XML-RPC
 //
 //  Created by lukeh on Fri Feb 09 2001.
 //  Copyright (c) 2001 PADL Software Pty Ltd. All rights reserved.
@@ -99,4 +99,6 @@ XMLRPC_EXPORT id XMLRPCInvokeObjCMethod(id obj, NSString *methodName, NSArray *a
 - (BOOL)willAutoCreateObjects;
 
 @end
+
+XMLRPC_EXPORT NSString *const XMLRPCAbyssServerConfigurationKey;
 

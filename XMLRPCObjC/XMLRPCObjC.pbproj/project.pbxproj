@@ -97,21 +97,13 @@
 			path = XMLRPCObjC.framework;
 			refType = 3;
 		};
-		049D0FD6003A8BF5CB0D2049 = {
-			fileRef = 0257D335003A88C9CB0D2049;
-			isa = PBXBuildFile;
-			settings = {
-				INCLUDED_OSS = (
-					MACOS,
-					WINDOWS,
-					PDOUNIX,
-				);
-			};
-		};
 		049D0FD7003A8BF5CB0D2049 = {
 			fileRef = 0257D336003A88C9CB0D2049;
 			isa = PBXBuildFile;
 			settings = {
+				ATTRIBUTES = (
+					Public,
+				);
 				INCLUDED_OSS = (
 					MACOS,
 					WINDOWS,
@@ -123,6 +115,9 @@
 			fileRef = 0257D33A003A88C9CB0D2049;
 			isa = PBXBuildFile;
 			settings = {
+				ATTRIBUTES = (
+					Private,
+				);
 				INCLUDED_OSS = (
 					MACOS,
 					WINDOWS,
@@ -134,6 +129,9 @@
 			fileRef = 0257D33E003A88C9CB0D2049;
 			isa = PBXBuildFile;
 			settings = {
+				ATTRIBUTES = (
+					Public,
+				);
 				INCLUDED_OSS = (
 					MACOS,
 					WINDOWS,
@@ -145,6 +143,9 @@
 			fileRef = 0257D33F003A88C9CB0D2049;
 			isa = PBXBuildFile;
 			settings = {
+				ATTRIBUTES = (
+					Private,
+				);
 				INCLUDED_OSS = (
 					MACOS,
 					WINDOWS,
@@ -156,6 +157,9 @@
 			fileRef = 0257D340003A88C9CB0D2049;
 			isa = PBXBuildFile;
 			settings = {
+				ATTRIBUTES = (
+					Public,
+				);
 				INCLUDED_OSS = (
 					MACOS,
 					WINDOWS,
@@ -167,6 +171,9 @@
 			fileRef = 0257D342003A88C9CB0D2049;
 			isa = PBXBuildFile;
 			settings = {
+				ATTRIBUTES = (
+					Public,
+				);
 				INCLUDED_OSS = (
 					MACOS,
 					WINDOWS,
@@ -353,7 +360,6 @@
 		0867D69DFE84028FC02AAC07 = {
 			buildActionMask = 2147483647;
 			files = (
-				049D0FD6003A8BF5CB0D2049,
 				049D0FD7003A8BF5CB0D2049,
 				049D0FD8003A8BF5CB0D2049,
 				049D0FD9003A8BF5CB0D2049,

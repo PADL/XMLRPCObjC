@@ -1,6 +1,6 @@
 //
 //  XMLRPCGluePrivate.h
-//  XMLRPCGlue
+//  XMLRPCGlue -- private glue between XMLRPCObjC and xmlrpc-c
 //
 //  Created by lukeh on Wed Feb 14 2001.
 //  Copyright (c) 2000 __CompanyName__. All rights reserved.

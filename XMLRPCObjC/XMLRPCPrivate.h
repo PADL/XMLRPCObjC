@@ -1,6 +1,6 @@
 //
 //  XMLRPCPrivate.h
-//  XMLRPCObjC
+//  XMLRPCObjC -- Objective-C bindings to XML-RPC
 //
 //  Created by lukeh on Mon Feb 12 2001.
 //  Copyright (c) 2001 PADL Software. All rights reserved.

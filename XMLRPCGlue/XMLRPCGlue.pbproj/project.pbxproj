@@ -249,17 +249,6 @@
 				);
 			};
 		};
-		0257D31B003A804BCB0D2049 = {
-			fileRef = 0257D304003A804BCB0D2049;
-			isa = PBXBuildFile;
-			settings = {
-				INCLUDED_OSS = (
-					MACOS,
-					WINDOWS,
-					PDOUNIX,
-				);
-			};
-		};
 		0257D31F003A804BCB0D2049 = {
 			fileRef = 0257D30C003A804BCB0D2049;
 			isa = PBXBuildFile;
@@ -385,20 +374,6 @@
 		};
 		0257D329003A804BCB0D2049 = {
 			fileRef = 0257D303003A804BCB0D2049;
-			isa = PBXBuildFile;
-			settings = {
-				ATTRIBUTES = (
-					Debug,
-				);
-				INCLUDED_OSS = (
-					MACOS,
-					WINDOWS,
-					PDOUNIX,
-				);
-			};
-		};
-		0257D32A003A804BCB0D2049 = {
-			fileRef = 0257D305003A804BCB0D2049;
 			isa = PBXBuildFile;
 			settings = {
 				ATTRIBUTES = (
@@ -926,6 +901,31 @@
 			path = /usr/local/lib/libxmltok.a;
 			refType = 0;
 		};
+		049D0FE6003A9BD7CB0D2049 = {
+			fileRef = 0257D304003A804BCB0D2049;
+			isa = PBXBuildFile;
+			settings = {
+				INCLUDED_OSS = (
+					MACOS,
+					WINDOWS,
+					PDOUNIX,
+				);
+			};
+		};
+		049D0FE7003A9BD7CB0D2049 = {
+			fileRef = 0257D305003A804BCB0D2049;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					Debug,
+				);
+				INCLUDED_OSS = (
+					MACOS,
+					WINDOWS,
+					PDOUNIX,
+				);
+			};
+		};
 		0867D690FE84028FC02AAC07 = {
 			isa = PBXProject;
 			mainGroup = 0867D691FE84028FC02AAC07;
@@ -1032,10 +1032,10 @@
 				0257D318003A804BCB0D2049,
 				0257D319003A804BCB0D2049,
 				0257D31A003A804BCB0D2049,
-				0257D31B003A804BCB0D2049,
 				0257D31F003A804BCB0D2049,
 				0257D320003A804BCB0D2049,
 				0257D333003A8686CB0D2049,
+				049D0FE6003A9BD7CB0D2049,
 			);
 			isa = PBXHeadersBuildPhase;
 			name = Headers;
@@ -1060,10 +1060,10 @@
 				0257D327003A804BCB0D2049,
 				0257D328003A804BCB0D2049,
 				0257D329003A804BCB0D2049,
-				0257D32A003A804BCB0D2049,
 				0257D32E003A804BCB0D2049,
 				0257D32F003A804BCB0D2049,
 				0257D331003A81B6CB0D2049,
+				049D0FE7003A9BD7CB0D2049,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;

@@ -1,6 +1,6 @@
 //
 //  XMLRPCClient.m
-//  XMLRPC
+//  XMLRPCObjC -- Objective-C bindings to XML-RPC
 //
 //  Created by lukeh on Fri Feb 09 2001.
 //  Copyright (c) 2001 PADL Software Pty Ltd. All rights reserved.

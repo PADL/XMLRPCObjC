@@ -7,7 +7,7 @@ int main (int argc, const char *argv[]) {
 	XMLRPCClient *client;
 	NSString *url;
 	
-	if (argc != 2 || argc != 3) {
+	if (argc < 2 || argc > 3) {
 		fprintf(stderr, "Usage: %s: [URL] [abyssConfigFile]\n", argv[0]);
 		exit(1);
 	}

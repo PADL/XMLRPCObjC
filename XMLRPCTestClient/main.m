@@ -45,6 +45,7 @@ void testStateMapper(void) {
 	XMLRPCProxy <StateNaming> *stateNamer;
 	
 	client = [XMLRPCClient client:[NSURL URLWithString:@"http://betty.userland.com/RPC2"]];
+//	client = [XMLRPCClient client:[NSURL URLWithString:localURL]];
 	stateNamer = (id <StateNaming>)[client proxyForTarget:@"examples"];
 	[stateNamer setProtocolForProxy:@protocol(StateNaming)];
 

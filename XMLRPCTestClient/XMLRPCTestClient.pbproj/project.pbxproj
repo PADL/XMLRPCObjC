@@ -4,23 +4,6 @@
 	};
 	objectVersion = 30;
 	objects = {
-		016787860034DC4ECB0D2049 = {
-			isa = PBXFrameworkReference;
-			name = XMLRPCObjC.framework;
-			path = /Library/Frameworks/XMLRPCObjC.framework;
-			refType = 0;
-		};
-		016787870034DC4ECB0D2049 = {
-			fileRef = 016787860034DC4ECB0D2049;
-			isa = PBXBuildFile;
-			settings = {
-				INCLUDED_OSS = (
-					MACOS,
-					WINDOWS,
-					PDOUNIX,
-				);
-			};
-		};
 		034768E6FF38A76511DB9C8B = {
 			isa = PBXExecutableFileReference;
 			path = XMLRPCTestTool;
@@ -60,7 +43,6 @@
 		08FB779DFE84155DC02AAC07 = {
 			children = (
 				08FB779EFE84155DC02AAC07,
-				016787860034DC4ECB0D2049,
 			);
 			isa = PBXGroup;
 			name = "External Frameworks and Libraries";
@@ -80,7 +62,7 @@
 				08FB77A5FE84155DC02AAC07,
 			);
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = "";
 				OPTIMIZATION_CFLAGS = "";
@@ -135,7 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08FB77A4FE84155DC02AAC07,
-				016787870034DC4ECB0D2049,
+				137825AC00351E4CCB0D2049,
 			);
 			isa = PBXFrameworksBuildPhase;
 			name = "Frameworks & Libraries";
@@ -158,9 +140,27 @@
 			isa = PBXRezBuildPhase;
 			name = "ResourceManager Resources";
 		};
+		137825AB00351E4CCB0D2049 = {
+			isa = PBXFrameworkReference;
+			name = XMLRPCObjC.framework;
+			path = /Library/Frameworks/XMLRPCObjC.framework;
+			refType = 0;
+		};
+		137825AC00351E4CCB0D2049 = {
+			fileRef = 137825AB00351E4CCB0D2049;
+			isa = PBXBuildFile;
+			settings = {
+				INCLUDED_OSS = (
+					MACOS,
+					WINDOWS,
+					PDOUNIX,
+				);
+			};
+		};
 		1AB674ADFE9D54B511CA2CBB = {
 			children = (
 				034768E6FF38A76511DB9C8B,
+				137825AB00351E4CCB0D2049,
 			);
 			isa = PBXGroup;
 			name = Products;

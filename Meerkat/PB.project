@@ -5,12 +5,7 @@
     FILESTABLE = {
         CLASSES = (Meerkat.m, Category.m, DataSource.m, Item.m, CategoryBag.m); 
         English_INTERFACES = (Meerkat.nib, "Meerkat-windows.nib"); 
-        FRAMEWORKS = (
-            AppKit.framework, 
-            Foundation.framework, 
-            XMLRPCGlue.framework, 
-            XMLRPCObjC.framework
-        ); 
+        FRAMEWORKS = (AppKit.framework, Foundation.framework, XMLRPCObjC.framework); 
         FRAMEWORKSEARCH = (/Library/Frameworks); 
         H_FILES = (Meerkat.h, Category.h, Item.h, CategoryBag.h, DataSource.h); 
         INTERFACES = (); 

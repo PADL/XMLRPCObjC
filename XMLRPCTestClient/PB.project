@@ -18,7 +18,7 @@
     PDO_UNIX_INSTALLDIR = /bin; 
     PDO_UNIX_JAVA_COMPILER = "$(JDKBINDIR)/javac"; 
     PDO_UNIX_OBJCPLUS_COMPILER = "$(NEXTDEV_BIN)/gcc"; 
-    PROJECTNAME = XMLRPCTestClient; 
+    PROJECTNAME = "xmlrpc-test-client"; 
     PROJECTTYPE = Tool; 
     PROJECTVERSION = 2.8; 
     WINDOWS_BUILDTOOL = $NEXT_ROOT/Developer/Executables/make; 

@@ -97,7 +97,9 @@
 
 - (void)dealloc
 {
-	xmlrpc_DECREF(mValue);
+	if (mValue != NULL) {
+		xmlrpc_DECREF(mValue);
+	}
 	[super dealloc];
 }
 
@@ -119,7 +121,10 @@
 
 - initWithObject:(id)object
 {
-	if ([object isKindOfClass:[NSNumber class]]) {
+	if (object == nil || [object isKindOfClass:[NSNull class]]) {
+		[self release];
+		return nil;
+	} else if ([object isKindOfClass:[NSNumber class]]) {
 		return [self initWithNumber:(NSNumber *)object];
 	} else if ([object isKindOfClass:[NSDate class]]) {
 		return [self initWithDate:(NSDate *)object];
@@ -151,40 +156,54 @@
 		@"Cannot convert Objective-C object of class %@ to XML-RPC value",
 		NSStringFromClass([object class])];
 
+	[self release];
 	return nil;
 }
 
 - initWithNumber:(NSNumber *)number
 {
-	XMLRPCEnv *env = [[XMLRPCEnv alloc] init];
-	xmlrpc_value *value = NULL;
+	XMLRPCEnv *env;
+	xmlrpc_value *value;
+
+	if (number == nil) {
+		[self release];
+		return nil;
+	}
+
+	env = [[XMLRPCEnv alloc] init];
 
 	switch (*[number objCType]) {
+		case NSObjCCharType - 32:
 		case NSObjCCharType: {
 			char charValue = [number charValue];
 			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)charValue);
 			break;
 		}
+		case NSObjCShortType - 32:
 		case NSObjCShortType: {
 			short shortValue = [number shortValue];
 			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)shortValue);
 			break;
 		}
+		case NSObjCLongType - 32:
 		case NSObjCLongType: {
 			long longValue = [number longValue];
 			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)longValue);
 			break;
 		}
+		case NSObjCLonglongType - 32:
 		case NSObjCLonglongType: {
 			long long longLongValue = [number longLongValue];
 			value = xmlrpc_build_value([env rpcEnv], "i", (xmlrpc_int32)longLongValue);
 			break;
 		}
+		case NSObjCFloatType - 32:
 		case NSObjCFloatType: {
 			float floatValue = [number floatValue];
 			value = xmlrpc_build_value([env rpcEnv], "d", (double)floatValue);
 			break;
 		}
+		case NSObjCDoubleType - 32:
 		case NSObjCDoubleType: {
 			double doubleValue = [number doubleValue];
 			value = xmlrpc_build_value([env rpcEnv], "d", doubleValue);
@@ -193,6 +212,8 @@
 		default:
 			[NSException raise:NSInvalidArgumentException
 				format:@"Cannot convert Objective-C type %s to XML-RPC value", [number objCType]];
+			value = NULL;
+			break;
 	}
 
 	[env raiseIfFaultOccurred];
@@ -203,9 +224,17 @@
 
 - initWithString:(NSString *)string
 {
-	XMLRPCEnv *env = [[XMLRPCEnv alloc] init];
+	XMLRPCEnv *env;
 	xmlrpc_value *value;
-	const char *data = [string cString];
+	const char *data;
+
+	if (string == nil) {
+		[self release];
+		return nil;
+	}
+
+	env = [[XMLRPCEnv alloc] init];
+	data = [string cString];
 	
 	value = xmlrpc_build_value([env rpcEnv], "s", data);
 	
@@ -217,16 +246,23 @@
 
 - initWithDate:(NSDate *)date
 {
+	[self release];
 	return nil;
 }
 
 - initWithArray:(NSArray *)array
 {
-	XMLRPCEnv *env = [[XMLRPCEnv alloc] init];
+	XMLRPCEnv *env;
 	xmlrpc_value *value;
 	NSEnumerator *e;
 	id obj;
-	
+
+	if (array == nil) {
+		[self release];
+		return nil;
+	}
+
+	env = [[XMLRPCEnv alloc] init];	
 	value = xmlrpc_build_value([env rpcEnv], "()");
 
 	e = [array objectEnumerator];
@@ -234,10 +270,11 @@
 		XMLRPCValue *tmp;
 
 		tmp = [[XMLRPCValue alloc] initWithObject:obj];
-		xmlrpc_array_append_item([env rpcEnv], value, [tmp borrowReference]);
-		[tmp release];
-
-		[env raiseIfFaultOccurred];
+		if (tmp != nil) {
+			xmlrpc_array_append_item([env rpcEnv], value, [tmp borrowReference]);
+			[tmp release];
+			[env raiseIfFaultOccurred];
+		}
 	}
 	
 	[env release];
@@ -247,23 +284,33 @@
 
 - initWithDictionary:(NSDictionary *)dict
 {
-	XMLRPCEnv *env = [[XMLRPCEnv alloc] init];
+	XMLRPCEnv *env;
 	xmlrpc_value *value;
 	NSEnumerator *e;
 	id obj;
-	
+
+	if (dict == nil) {
+		[self release];
+		return nil;
+	}
+
+	env = [[XMLRPCEnv alloc] init];	
 	value = xmlrpc_struct_new([env rpcEnv]);
 	[env raiseIfFaultOccurred];
 
 	e = [dict keyEnumerator];
 	while ((obj = [e nextObject]) != nil) {
-		XMLRPCValue *tmp = [[XMLRPCValue alloc] initWithObject:[dict objectForKey:obj]];
-		xmlrpc_struct_set_value([env rpcEnv],
-			value,
-			(char *)[[obj description] cString],
-			[tmp borrowReference]);
-		[tmp release];
-		[env raiseIfFaultOccurred];
+		XMLRPCValue *tmp;
+
+		tmp = [[XMLRPCValue alloc] initWithObject:[dict objectForKey:obj]];
+		if (tmp != nil) {
+			xmlrpc_struct_set_value([env rpcEnv],
+				value,
+				(char *)[[obj description] cString],
+				[tmp borrowReference]);
+			[tmp release];
+			[env raiseIfFaultOccurred];
+		}
 	}
 	
 	[env release];
@@ -273,9 +320,15 @@
 
 - initWithData:(NSData *)data
 {
-	XMLRPCEnv *env = [[XMLRPCEnv alloc] init];
+	XMLRPCEnv *env;
 	xmlrpc_value *value;
 
+	if (data == nil) {
+		[self release];
+		return nil;
+	}
+
+	env = [[XMLRPCEnv alloc] init];
 	value = xmlrpc_build_value([env rpcEnv], "8", [data bytes], [data length]);
 	
 	[env raiseIfFaultOccurred];
@@ -288,32 +341,43 @@
 {
 	id retVal = nil;
 
+	if (value == NULL) {
+		[self release];
+		return nil;
+	}
+
 	switch (value->type) {
+		case NSObjCCharType - 32:
 		case NSObjCCharType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithChar:value->value.charValue]];
 			break;
 		}
+		case NSObjCShortType - 32:
 		case NSObjCShortType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithShort:value->value.shortValue]];
 			break;
 		}
+		case NSObjCLongType - 32:
 		case NSObjCLongType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithLong:value->value.longValue]];
 			break;
 		}
+		case NSObjCLonglongType - 32:
 		case NSObjCLonglongType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithLongLong:value->value.longValue]];
 			break;
 		}
+		case NSObjCFloatType - 32:
 		case NSObjCFloatType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithFloat:value->value.floatValue]];
 			break;
 		}
+		case NSObjCDoubleType - 32:
 		case NSObjCDoubleType: {
 			retVal = [[XMLRPCValue alloc] initWithNumber:
 				[NSNumber numberWithDouble:value->value.doubleValue]];
@@ -404,7 +468,7 @@
 			[NSException raise:NSGenericException format:@"Cannot convert XML-RPC values of type %d to Objective-C objects", [self type]];
 			break;
 	}
-	
+
 	return nil;
 }
 

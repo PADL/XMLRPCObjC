@@ -19,6 +19,12 @@
 	return [[[self alloc] init] autorelease];
 }
 
+- (void)dealloc
+{
+	xmlrpc_env_clean(&mEnv);
+	[super dealloc];
+}
+
 - init
 {
 	[super init];

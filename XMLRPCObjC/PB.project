@@ -3,20 +3,13 @@
     DEPLOY_WITH_VERSION_NAME = A; 
     DYNAMIC_CODE_GEN = YES; 
     FILESTABLE = {
-        CLASSES = (
-            XMLRPCClient.m, 
-            XMLRPCMethodRegistry.m, 
-            XMLRPCMethodSignature.m, 
-            XMLRPCProxy.m, 
-            XMLRPCServer.m
-        ); 
+        CLASSES = (XMLRPCClient.m, XMLRPCMethodSignature.m, XMLRPCProxy.m, XMLRPCServer.m); 
         FRAMEWORKS = (Foundation.framework, XMLRPCGlue.framework); 
         FRAMEWORKSEARCH = (/Library/Frameworks); 
-        HEADERSEARCH = (/usr/local/include, ..);
+        HEADERSEARCH = (/usr/local/include, ..); 
         H_FILES = (
             NSHTTPConnection.h, 
             XMLRPCClient.h, 
-            XMLRPCMethodRegistry.h, 
             XMLRPCMethodSignature.h, 
             XMLRPCObjC.h, 
             XMLRPCPrivate.h, 

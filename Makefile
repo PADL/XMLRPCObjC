@@ -10,35 +10,24 @@
 NAME = XMLRPCObjC
 
 PROJECTVERSION = 2.8
-PROJECT_TYPE = Framework
+PROJECT_TYPE = Aggregate
 
-CLASSES = XMLRPCClient.m XMLRPCMethodSignature.m XMLRPCProxy.m\
-          XMLRPCServer.m
+SUBPROJECTS = Meerkat
 
-HFILES = NSHTTPConnection.h XMLRPCClient.h XMLRPCMethodSignature.h\
-         XMLRPCObjC.h XMLRPCPrivate.h XMLRPCProxy.h XMLRPCServer.h
+TOOLS = XMLRPCProxyServer XMLRPCTestClient XMLRPCTestServer
 
-OTHERSRCS = Makefile.preamble Makefile Makefile.postamble m.template\
-            h.template
+FRAMEWORK_SUBPROJECTS = XMLRPCGlue XMLRPCObjC
+
+OTHERSRCS = Makefile.preamble Makefile Makefile.postamble
 
 MAKEFILEDIR = $(MAKEFILEPATH)/pb_makefiles
-CURRENTLY_ACTIVE_VERSION = YES
-DEPLOY_WITH_VERSION_NAME = A
 CODE_GEN_STYLE = DYNAMIC
-MAKEFILE = framework.make
-NEXTSTEP_INSTALLDIR = /Library/Frameworks
-WINDOWS_INSTALLDIR = /Library/Frameworks
-PDO_UNIX_INSTALLDIR = /Library/Frameworks
+MAKEFILE = aggregate.make
 LIBS = 
 DEBUG_LIBS = $(LIBS)
 PROF_LIBS = $(LIBS)
 
 
-HEADER_PATHS = -I/usr/local/include -I..
-LIBRARY_PATHS = -L/usr/local/lib
-FRAMEWORK_PATHS = -F/Library/Frameworks
-NEXTSTEP_PB_LDFLAGS = -flat_namespace
-FRAMEWORKS = -framework Foundation -framework XMLRPCGlue
 
 
 NEXTSTEP_OBJCPLUS_COMPILER = /usr/bin/cc

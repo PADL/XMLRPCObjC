@@ -7,7 +7,7 @@
 # and Makefile.postamble (both optional), and Makefile will include them.
 #
 
-NAME = XMLRPCTestClient
+NAME = xmlrpc-test-client
 
 PROJECTVERSION = 2.8
 PROJECT_TYPE = Tool

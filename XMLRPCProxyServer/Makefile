@@ -7,7 +7,7 @@
 # and Makefile.postamble (both optional), and Makefile will include them.
 #
 
-NAME = XMLRPCProxyServer
+NAME = xmlrpc-proxy-server
 
 PROJECTVERSION = 2.8
 PROJECT_TYPE = Tool

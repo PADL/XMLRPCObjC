@@ -47,6 +47,12 @@ static NSString *XMLRPCError2ExceptionName(int code)
 	return [[[self alloc] initWithCode:faultCode string:faultString] autorelease];
 }
 
+- (void)dealloc
+{
+	xmlrpc_env_clean(&mFault);
+	[super dealloc];
+}
+
 - (id)initWithName:(NSString *)aName reason:(NSString *)aReason userInfo:(NSDictionary *)aUserInfo
 {
 	int faultCode;
@@ -86,7 +92,8 @@ static NSString *XMLRPCError2ExceptionName(int code)
 
 	[super initWithName:XMLRPCError2ExceptionName(env->fault_code) reason:[NSString stringWithCString:env->fault_string] userInfo:nil];
 		
-	xmlrpc_env_init(&mFault);
+
+    xmlrpc_env_init(&mFault);
 	xmlrpc_env_set_fault(&mFault, env->fault_code, env->fault_string);
 	
 	return self;

@@ -78,6 +78,20 @@ void testLocal(void) {
 	NSLog(@"%ld", result);
 }
 
+void testListMethods(void) {
+	XMLRPCClient *client;
+	id rootProxy;
+	NSArray *methods;
+	id system;
+
+	client = [XMLRPCClient client:[NSURL URLWithString:localURL]];
+	rootProxy = [client rootProxy];
+	system = [rootProxy proxyForTarget:@"system"];
+	methods = [system performSelector:@selector(listMethods)];
+
+	NSLog(@"%@", methods);
+}
+
 /*
  * Test the oreilly meerkat service
  */
@@ -116,6 +130,9 @@ int main (int argc, const char *argv[]) {
 
 //	NSLog(@"Testing local addition service with wrappers...\n");
 //	testLocalArg();
+
+	NSLog(@"Testing introspecting local method registry");
+	testListMethods();
 
 	NSLog(@"Testing local addition service using proxy and type introspection...\n");
 	testLocal();

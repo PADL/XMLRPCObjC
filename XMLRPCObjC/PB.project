@@ -1,0 +1,47 @@
+{
+    CURRENTLY_ACTIVE_VERSION = YES; 
+    DEPLOY_WITH_VERSION_NAME = A; 
+    DYNAMIC_CODE_GEN = YES; 
+    FILESTABLE = {
+        CLASSES = (
+            XMLRPCClient.m, 
+            XMLRPCMethodRegistry.m, 
+            XMLRPCMethodSignature.m, 
+            XMLRPCProxy.m, 
+            XMLRPCServer.m
+        ); 
+        FRAMEWORKS = (Foundation.framework, XMLRPCGlue.framework); 
+        FRAMEWORKSEARCH = (/Library/Frameworks); 
+        HEADERSEARCH = (/usr/local/include, ..);
+        H_FILES = (
+            NSHTTPConnection.h, 
+            XMLRPCClient.h, 
+            XMLRPCMethodRegistry.h, 
+            XMLRPCMethodSignature.h, 
+            XMLRPCObjC.h, 
+            XMLRPCPrivate.h, 
+            XMLRPCProxy.h, 
+            XMLRPCServer.h
+        ); 
+        LIBRARYSEARCH = (/usr/local/lib); 
+        OTHER_SOURCES = (Makefile.preamble, Makefile, Makefile.postamble, m.template, h.template); 
+    }; 
+    LANGUAGE = English; 
+    MAKEFILEDIR = "$(MAKEFILEPATH)/pb_makefiles"; 
+    NEXTSTEP_BUILDTOOL = /usr/bin/gnumake; 
+    NEXTSTEP_INSTALLDIR = /Library/Frameworks; 
+    NEXTSTEP_JAVA_COMPILER = /usr/bin/javac; 
+    NEXTSTEP_LINKEROPTIONS = "-flat_namespace"; 
+    NEXTSTEP_OBJCPLUS_COMPILER = /usr/bin/cc; 
+    PDO_UNIX_BUILDTOOL = $NEXT_ROOT/Developer/bin/make; 
+    PDO_UNIX_INSTALLDIR = /Library/Frameworks; 
+    PDO_UNIX_JAVA_COMPILER = "$(JDKBINDIR)/javac"; 
+    PDO_UNIX_OBJCPLUS_COMPILER = "$(NEXTDEV_BIN)/gcc"; 
+    PROJECTNAME = XMLRPCObjC; 
+    PROJECTTYPE = Framework; 
+    PROJECTVERSION = 2.8; 
+    WINDOWS_BUILDTOOL = $NEXT_ROOT/Developer/Executables/make; 
+    WINDOWS_INSTALLDIR = /Library/Frameworks; 
+    WINDOWS_JAVA_COMPILER = "$(JDKBINDIR)/javac.exe"; 
+    WINDOWS_OBJCPLUS_COMPILER = "$(DEVDIR)/gcc"; 
+}

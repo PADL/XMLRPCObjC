@@ -33,7 +33,7 @@ static NSString *XMLRPCError2ExceptionName(int code)
 			break;
 	}
 	
-	return XMLRPCInternalException;
+	return [NSString stringWithFormat:@"Unknown fault %d", code];
 }
 
 @implementation XMLRPCFault

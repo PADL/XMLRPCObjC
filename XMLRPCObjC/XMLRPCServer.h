@@ -25,7 +25,7 @@ XMLRPC_EXPORT id XMLRPCInvokeObjCMethod(id obj, NSString *methodName, NSArray *a
  * and NSProxy as a category, and special cased
  * implementations for XMLRPCClient and XMLRPCProxy.
  */
-@protocol XMLRPCMethodHandling <NSObject>
+@protocol XMLRPCMethodHandling
 - (id)invoke:(NSString *)methodName withArguments:(NSArray *)args;
 @end
 

@@ -1,4 +1,4 @@
-@protocol Meerkat <XMLRPCProtocolSetting>
+@protocol Meerkat 
 - (NSArray *)getItems:(NSDictionary *)recipe;
 @end
 

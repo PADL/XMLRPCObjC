@@ -34,7 +34,7 @@ void testProxy(void) {
 	XMLRPCClient *client;
 	NSNumber *number = [NSNumber numberWithInt:41];
 	NSString *stateName;
-	id <StateNaming> stateNamer;
+	XMLRPCProxy <StateNaming> *stateNamer;
 	id rootProxy;
 	
 	client = [XMLRPCClient client:@"http://betty.userland.com/RPC2"];
@@ -51,7 +51,7 @@ void testLocal(void) {
 	XMLRPCClient *client;
 	NSNumber *x = [NSNumber numberWithInt:23], *y = [NSNumber numberWithInt:42];
 	NSNumber *result;
-	id <sample_protocol> adder;
+	XMLRPCProxy <sample_protocol> *adder;
 	id rootProxy;
 
 	client = [XMLRPCClient client:@"http://lennie.off.padl.com:8000/RPC2"];
@@ -67,7 +67,7 @@ void testLocal(void) {
 void testMeerkat(void) {
 	XMLRPCClient *client;
 	id rootProxy;
-	id <Meerkat> meerkat;
+	XMLRPCProxy <Meerkat> *meerkat;
 	NSMutableDictionary *recipe = [NSMutableDictionary dictionary];
 	NSArray *apps;
 

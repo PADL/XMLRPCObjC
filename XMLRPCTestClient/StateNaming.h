@@ -1,3 +1,3 @@
 @protocol StateNaming 
-- (NSString *)getStateName:(NSNumber *)stateNumber;
+- (char *)getStateName:(long)stateNumber;
 @end

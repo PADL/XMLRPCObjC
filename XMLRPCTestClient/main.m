@@ -4,7 +4,13 @@
 #import "sample.h"
 #import "Meerkat.h"
 
-void testWrappers(void) {
+static NSString *localURL = @"http://lennie.off.padl.com:8000/RPC2";
+
+/*
+ * Call the state mapping service by constructing an
+ * argument frame.
+ */
+void testStateMapperArg(void) {
 	XMLRPCClient *client;
 	XMLRPCValue *value, *argFrame;
 	NSNumber *number = [NSNumber numberWithInt:41];
@@ -17,23 +23,29 @@ void testWrappers(void) {
 	NSLog(@"%@", [[value object] description]);
 }
 
-void testWrappers2(void) {
+/*
+ * Call the local addition service by constructing an
+ * argument frame.
+ */
+void testLocalArg(void) {
 	XMLRPCClient *client;
 	XMLRPCValue *value, *argFrame;
 	NSNumber *x = [NSNumber numberWithInt:23], *y = [NSNumber numberWithInt:42];
 	NSArray *args = [NSArray arrayWithObjects:x, y, nil];
 
-	client = [XMLRPCClient client:[NSURL URLWithString:@"http://lennie.off.padl.com:8000/RPC2"]];
+	client = [XMLRPCClient client:[NSURL URLWithString:localURL]];
 	argFrame = [XMLRPCValue valueWithObject:args];
 	NSLog([argFrame description]);
 	value = [client call:@"sample.add" withArguments:argFrame];
 	NSLog(@"%@", [[value object] description]);
 }
 
-void testProxy(void) {
+/*
+ * Test the state mapping service using a protocoll.
+ */
+void testStateMapper(void) {
 	XMLRPCClient *client;
-	NSNumber *number = [NSNumber numberWithInt:41];
-	NSString *stateName;
+	char *stateName;
 	XMLRPCProxy <StateNaming> *stateNamer;
 	id rootProxy;
 	
@@ -43,27 +55,32 @@ void testProxy(void) {
 	stateNamer = (id <StateNaming>)[rootProxy proxyForTarget:@"examples"];
 	[stateNamer setProtocolForProxy:@protocol(StateNaming)];
 
-	stateName = [stateNamer getStateName:number];
-	NSLog(@"%@", stateName);
+	stateName = [stateNamer getStateName:41];
+	NSLog(@"%s", stateName);
 }
 
+/*
+ * Test the local service using introspection.
+ */
 void testLocal(void) {
 	XMLRPCClient *client;
-	NSNumber *x = [NSNumber numberWithInt:23], *y = [NSNumber numberWithInt:42];
-	NSNumber *result;
 	XMLRPCProxy <sample_protocol> *adder;
 	id rootProxy;
-
-	client = [XMLRPCClient client:[NSURL URLWithString:@"http://lennie.off.padl.com:8000/RPC2"]];
+	long result;
+	
+	client = [XMLRPCClient client:[NSURL URLWithString:localURL]];
 	rootProxy = [client rootProxy];
 
 	adder = (id <sample_protocol>)[rootProxy proxyForTarget:@"sample"];
-	[adder setProtocolForProxy:@protocol(sample_protocol)];
-	result = [adder add:x :y];
+//	[adder setProtocolForProxy:@protocol(sample_protocol)];
+	result = [adder add:23 :42];
 
-	NSLog(@"%@", result);
+	NSLog(@"%ld", result);
 }
 
+/*
+ * Test the oreilly meerkat service
+ */
 void testMeerkat(void) {
 	XMLRPCClient *client;
 	id rootProxy;
@@ -91,19 +108,19 @@ void testMeerkat(void) {
 int main (int argc, const char *argv[]) {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-	printf("Testing wrappers...\n");
-	testWrappers();
+//	NSLog(@"Testing wrappers...\n");
+//	testStateMapperArg();
 
-	printf("Testing proxy with state mapping service...\n");
-	testProxy();
+//	NSLog(@"Testing state mapping service using proxy...\n");
+//	testStateMapper();
 
-	printf("Testing local addition service with wrappers...\n");
-	testWrappers2();
+//	NSLog(@"Testing local addition service with wrappers...\n");
+//	testLocalArg();
 
-	printf("Testing local addition service with proxy...\n");
+	NSLog(@"Testing local addition service using proxy...\n");
 	testLocal();
 
-	printf("Testing O'Reilly Meerkat service...\n");
+	NSLog(@"Testing O'Reilly Meerkat service using proxy...\n");
 	testMeerkat();
 
 	[pool release];

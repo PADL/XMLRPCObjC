@@ -57,8 +57,13 @@
 				);
 			};
 		};
-		0263D67500362468CB0D2049 = {
-			fileRef = 0263D67600362468CB0D2049;
+		034768E6FF38A76511DB9C8B = {
+			isa = PBXExecutableFileReference;
+			path = XMLRPCTestClient;
+			refType = 3;
+		};
+		03EC96D200363020CB0D2049 = {
+			fileRef = 0263D66F00362468CB0D2049;
 			isa = PBXBuildFile;
 			settings = {
 				ATTRIBUTES = (
@@ -70,17 +75,6 @@
 					PDOUNIX,
 				);
 			};
-		};
-		0263D67600362468CB0D2049 = {
-			isa = PBXFileReference;
-			name = Meerkat.m;
-			path = /Network/Servers/fs/u01/home/lukeh/CVSRoot/padl/XMLRPCObjC/XMLRPCTestClient/Meerkat.m;
-			refType = 0;
-		};
-		034768E6FF38A76511DB9C8B = {
-			isa = PBXExecutableFileReference;
-			path = XMLRPCTestClient;
-			refType = 3;
 		};
 		08FB7793FE84155DC02AAC07 = {
 			isa = PBXProject;
@@ -175,7 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08FB77A2FE84155DC02AAC07,
-				0263D67500362468CB0D2049,
+				03EC96D200363020CB0D2049,
 			);
 			isa = PBXSourcesBuildPhase;
 			name = Sources;

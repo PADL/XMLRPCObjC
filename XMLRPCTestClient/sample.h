@@ -1,4 +1,4 @@
 @protocol sample_protocol 
-- (NSNumber *)add:(NSNumber *)x :(NSNumber *)y;
+- (long)add:(long)x :(long)y;
 @end
 

@@ -119,27 +119,40 @@ void testMeerkat(void) {
 	NSLog(@"%@", apps);
 }
 
+void usage(char *argv0) {
+		fprintf(stderr, "Usage: %s\n", argv0);
+		fprintf(stderr, "	--test-state-mapper-wrapper |\n");
+		fprintf(stderr, "	--test-state-mapper-proxy |\n");
+		fprintf(stderr, "	--test-adder-wrapper |\n");
+		fprintf(stderr, "	--test-adder-proxy |\n");
+		fprintf(stderr, "	--test-registry |\n");
+		fprintf(stderr, "	--test-meerkat\n");
+		exit(1);
+}
+
 int main (int argc, const char *argv[]) {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-//	NSLog(@"Testing wrappers...\n");
-//	testStateMapperArg();
-
-	NSLog(@"Testing state mapping service using proxy...\n");
-	testStateMapper();
-
-//	NSLog(@"Testing local addition service with wrappers...\n");
-//	testLocalArg();
-
-	NSLog(@"Testing introspecting local method registry");
-	testListMethods();
-
-	NSLog(@"Testing local addition service using proxy and type introspection...\n");
-	testLocal();
-
-	NSLog(@"Testing O'Reilly Meerkat service using proxy...\n");
-	testMeerkat();
-
+	if (argc < 2) {
+		usage((char*)argv[0]);
+	}
+	
+	if (!strcmp(argv[1], "--test-state-mapper-wrapper")) {
+		testStateMapperArg();
+	} else if (!strcmp(argv[1], "--test-state-mapper-proxy")) {
+		testStateMapper();
+	} else if (!strcmp(argv[1], "--test-adder-wrapper")) {
+		testLocalArg();
+	} else if (!strcmp(argv[1], "--test-adder-proxy")) {
+		testLocal();
+	} else if (!strcmp(argv[1], "--test-registry")) {
+		testListMethods();
+	} else if (!strcmp(argv[1], "--test-meerkat")) {
+		testMeerkat();
+	} else {
+		usage((char*)argv[0]);
+	}
+	
 	[pool release];
 	exit(0);
 }

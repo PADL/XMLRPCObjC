@@ -1,7 +1,7 @@
 /* Item.m created by lukeh on Tue 09-Apr-2002 */
 
 #import "Item.h"
-#import "Controller.h"
+#import "DataSource.h"
 
 @implementation Item
 - (void)dealloc

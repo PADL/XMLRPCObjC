@@ -1,30 +1,53 @@
 /* DataSource.m created by lukeh on Tue 09-Apr-2002 */
 
 #import "DataSource.h"
-#import "Controller.h"
+#import "CategoryBag.h"
+#import "Item.h"
 
 @implementation DataSource
 
 // Data Source methods
 
-- init
+- (id <Meerkat>)meerkat
 {
-    Controller *c = [[Controller alloc] init];
-    [self initWithController:c];
-    [c release];
-    return self;
+    if ([self connect] == NO) {
+        return nil;
+    }
+    return meerkat;
 }
 
-- initWithController:(Controller *)c
+- (IBAction)showInfoPanel:(id)sender
+{
+    [[NSApplication sharedApplication] orderFrontStandardAboutPanel:sender];
+}
+
+- (BOOL)connect
+{
+    if (client == nil) {
+        client = [[XMLRPCClient client:[NSURL URLWithString:
+            @"http://www.oreillynet.com/meerkat/xml-rpc/server.php"]] retain];
+
+        [meerkat release];
+        meerkat = (id <Meerkat>)[client proxyForTarget:@"meerkat"];
+        [meerkat setProtocolForProxy:@protocol(Meerkat)];
+        [meerkat retain];
+    }
+
+    return (meerkat != nil);
+}
+
+- init
 {
     [super init];
-    bag = [[CategoryBag alloc] initWithController:c];
+    bag = [[CategoryBag alloc] initWithDataSource:self];
     return self;
 }
 
 - (void)dealloc
 {
     [bag release];
+    [client release];
+    [meerkat release];
     [super dealloc];
 }
 
@@ -59,25 +82,16 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
-    NSString *_html;
-    NSData *html;
-    id as;
+    return [item title];
+}
+
+- (IBAction)open:(id)sender
+{
+    id item = [outlineView itemAtRow:[outlineView selectedRow]];
 
     if ([item isKindOfClass:[Item class]]) {
-        _html = [[NSString alloc] initWithFormat:@"<A HREF=\"%@\">%@</A>",
-            [item link], [item title]];
-        html = [[NSData alloc] initWithBytes:[_html cString] length:[_html cStringLength]];
-
-        as = [[[NSAttributedString alloc] initWithHTML:html documentAttributes:NULL] autorelease];
-
-        [html release];
-        [_html release];
-
-    } else {
-        as = [item title];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[item link]]];        
     }
-    
-    return as;
 }
 
 // Delegate methods

@@ -1,12 +1,24 @@
-/* DataSource.h created by lukeh on Tue 09-Apr-2002 */
+/* DataSource.m created by lukeh on Tue 09-Apr-2002 */
 
 #import <AppKit/AppKit.h>
+#import <XMLRPCObjC/XMLRPCObjC.h>
 
-@class CategoryBag, Controller;
+#import "Meerkat.h"
+
+@class CategoryBag;
 
 @interface DataSource : NSObject
 {
+    XMLRPCClient *client;
+    XMLRPCProxy <Meerkat> *meerkat;
     CategoryBag *bag;
+    IBOutlet NSOutlineView *outlineView;
 }
-- initWithController:(Controller *)c;
+// Data Source methods
+
+- (id <Meerkat>)meerkat;
+- (BOOL)connect;
+- (IBAction)open:(id)sender;
+- (IBAction)showInfoPanel:(id)sender;
+
 @end

@@ -2,15 +2,15 @@
 
 #import <AppKit/AppKit.h>
 
-@class Controller;
+@class DataSource;
 
 @interface CategoryBag : NSObject
 {
-    Controller *controller;
+    DataSource *datasource;
     NSMutableArray *categories;
 }
 - (NSArray *)categories;
-- initWithController:(Controller *)c;
+- initWithDataSource:(DataSource *)c;
 - (int)numberOfChildren;
 - childAtIndex:(int)n;
 - (BOOL)isExpandable;

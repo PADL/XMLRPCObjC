@@ -1,7 +1,9 @@
 /* Category.m created by lukeh on Tue 09-Apr-2002 */
 
 #import "Category.h"
-#import "Controller.h"
+#import "DataSource.h"
+#import "Meerkat.h"
+#import "Item.h"
 
 @implementation Category
 
@@ -42,10 +44,10 @@
     title = [s retain];
 }
 
-- initWithController:(Controller *)c
+- initWithDataSource:(DataSource *)c
 {
     [super init];
-    controller = [c retain];
+    datasource = [c retain];
     return self;
 }
 
@@ -60,9 +62,9 @@
         recipe = [[MeerkatRecipe alloc] init];
         [recipe setCategory:[self id]];
         [recipe setTime_period:@"24HOUR"];
-        [recipe setDescriptions:[NSNumber numberWithInt:0]];
+        //[recipe setDescriptions:[NSNumber numberWithInt:0]];
 
-        _items = [[controller meerkat] getItems:recipe];
+        _items = [[datasource meerkat] getItems:recipe];
         
         items = [[NSMutableArray alloc] initWithCapacity:[_items count]];
         e = [_items objectEnumerator];
@@ -92,8 +94,12 @@
 {
     [_id release];
     [title release];
-    [controller release];
+    [datasource release];
     [items release];
     [super dealloc];
 }
 @end
+
+/*
+ - (BOOL)openURL:(NSURL *)url;
+*/

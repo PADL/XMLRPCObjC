@@ -1,6 +1,12 @@
 {
     IBClasses = (
-        {CLASS = DataSource; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {open = id; showInfoPanel = id; }; 
+            CLASS = DataSource; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {outlineView = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
         {
             ACTIONS = {showHelp = id; }; 
             CLASS = FirstResponder; 

@@ -2,17 +2,17 @@
 
 #import <AppKit/AppKit.h>
 
-@class Controller;
+@class DataSource;
 
 @interface Category : NSObject
 {
-    Controller *controller;
+    DataSource *datasource;
     NSNumber *_id;
     NSString *title;
     NSMutableArray *items;
 }
 
-- initWithController:(Controller *)controller;
+- initWithDataSource:(DataSource *)controller;
 
 - (NSNumber *)id;
 - (void)setId:(NSNumber *)id;

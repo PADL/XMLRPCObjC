@@ -1,0 +1,6 @@
+{
+    CFBundleName = "Meerkat";
+    CFBundleVersion = "1.0";
+    NSHumanReadableCopyright = "Copyright 2002 PADL Software Pty Ltd. All rights reserved. ";
+}
+

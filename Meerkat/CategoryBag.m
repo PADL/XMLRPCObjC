@@ -1,13 +1,14 @@
 /* CategoryBag.m created by lukeh on Tue 09-Apr-2002 */
 
 #import "CategoryBag.h"
-#import "Controller.h"
+#import "DataSource.h"
+#import "Category.h"
 
 @implementation CategoryBag
-- initWithController:(Controller *)c
+- initWithDataSource:(DataSource *)c
 {
     [super init];
-    controller = [c retain];
+    datasource = [c retain];
     return self;
 }
 
@@ -33,14 +34,14 @@
         NSEnumerator *e;
         id obj;
 
-        _categories = [[controller meerkat] getCategories];
+        _categories = [[datasource meerkat] getCategories];
         categories = [[NSMutableArray alloc] initWithCapacity:[_categories count]];
         e = [_categories objectEnumerator];
         while ((obj = [e nextObject]) != nil)
         {
             Category *cat;
 
-            cat = [[Category alloc] initWithController:controller];
+            cat = [[Category alloc] initWithDataSource:datasource];
             if (cat != nil) {
                 [cat takeValuesFromDictionary:(NSDictionary *)obj];
                 [cat autorelease];

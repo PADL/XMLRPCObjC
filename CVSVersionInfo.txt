@@ -2,5 +2,5 @@
 # $Id$
 # $Name$
 ProjectName: XMLRPCObjC
-ProjectVersion: 8
+ProjectVersion: 9
 ProjectMaintainer: lukeh

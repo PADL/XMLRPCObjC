@@ -76,6 +76,23 @@
 				);
 			};
 		};
+		06D24DDF0037A503CB0D2049 = {
+			isa = PBXFileReference;
+			name = libMallocDebug.a;
+			path = /usr/lib/libMallocDebug.a;
+			refType = 0;
+		};
+		06D24DE00037A503CB0D2049 = {
+			fileRef = 06D24DDF0037A503CB0D2049;
+			isa = PBXBuildFile;
+			settings = {
+				INCLUDED_OSS = (
+					MACOS,
+					WINDOWS,
+					PDOUNIX,
+				);
+			};
+		};
 		08FB7793FE84155DC02AAC07 = {
 			isa = PBXProject;
 			mainGroup = 08FB7794FE84155DC02AAC07;
@@ -193,6 +210,7 @@
 			files = (
 				08FB77A4FE84155DC02AAC07,
 				137825AC00351E4CCB0D2049,
+				06D24DE00037A503CB0D2049,
 			);
 			isa = PBXFrameworksBuildPhase;
 			name = "Frameworks & Libraries";
@@ -236,6 +254,7 @@
 			children = (
 				034768E6FF38A76511DB9C8B,
 				137825AB00351E4CCB0D2049,
+				06D24DDF0037A503CB0D2049,
 			);
 			isa = PBXGroup;
 			name = Products;

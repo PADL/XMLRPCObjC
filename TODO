@@ -1,0 +1,10 @@
+
+- eliminate dependency on w3c-libwww by switching
+  over to XMLRPCNSHTTPClient rather than XMLRPCW3CClient.
+  The latter seems more reliable but slower.
+
+- eliminate dependency on xmlrpc-c library
+  by using CoreFoundation XML parser to parse XML
+
+- integrate a web server with the run loop
+ 

@@ -58,8 +58,8 @@ Here is a simple client that adds two numbers:
    id adder;
    long result;
 
-   client = [XMLRPCClient client:@"localhost"
-      port:[NSNumber numberWithInt:8000]];
+   client = [XMLRPCClient client:[NSHost currentHost]
+      port:8000];
    adder = [client proxyForTarget:@"sample"];
    result = [adder add:23 :42];
    NSLog(@"%ld", result);
@@ -85,6 +85,7 @@ take Objective-C objects, eg:
    @protocol sample_protocol 
    - (NSNumber *)add:(NSNumber *)x :(NSNumber *)y;
    @end
+
 
 -- 
 Luke Howard <lukeh@padl.com>

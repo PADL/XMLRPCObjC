@@ -1,0 +1,6 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleName = "XMLRPCObjC";
+CFBundleShortVersionString = "XMLRPCObjC version 1";
+CFBundleGetInfoString = "XMLRPCObjC version 1, Copyright 2001 PADL Software Pty Ltd.";
+NSHumanReadableCopyright = "Copyright 2001 PADL Software Pty Ltd.";
